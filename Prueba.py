@@ -3,6 +3,7 @@ por cada categoría, donde necesito cargar por cada producto su marca
 - modelo/producto - grupo/categoria - precio - peso/volumen (liquido) - cantidad a ingresar/stock 
 - código de artículo (único por cada articulo que debe ser generado por el mismo software).
 Requiero dar de alta -baja - modificación - listado de cajeros y cajas habilitadas.'''
+#chanchito feliz
 
 class ProductosLimpieza():
     def __init__(self, prodlimp, marca):
