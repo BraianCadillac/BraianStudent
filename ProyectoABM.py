@@ -32,6 +32,14 @@ class ProductosDeLimpieza(Productos):
     def __init__(self, prod, marca, cantidad, precio, codigo):
         super().__init__(prod, marca, cantidad, precio, codigo)
 productosdelimpieza = []
+class ProductosDeForrajeria(Productos):
+    def __init__(self, prod, marca, cantidad, precio, codigo):
+        super().__init__(prod, marca, cantidad, precio, codigo)
+productosdeforrajeria = []
+class ProductosDeUtensiliosD(Productos):
+    def __init__(self, prod, marca, cantidad, precio, codigo):
+        super().__init__(prod, marca, cantidad, precio, codigo)
+utensiliosdomesticos = []
 
 while True:
     print ("1. Ingresar productos al stock")
@@ -47,10 +55,18 @@ while True:
             productoslimpieza = input('Ingresar producto: ')
             marcalimpieza = input('Ingresa la marca: ')
             cantidadlimpieza = int(input('¿Cuantos quieres ingresar?: '))
-            precio = int(input('Precio del producto : $'))
-            codprodlimp = input('Codigo de producto: ')
-            productolimp = ProductosDeLimpieza(productoslimpieza, marcalimpieza, cantidadlimpieza, precio, codprodlimp)
+            preciol = int(input('Precio del producto : $'))
+            codigolimp = input('Codigo de producto: ')
+            productolimp = ProductosDeLimpieza(productoslimpieza, marcalimpieza, cantidadlimpieza, preciol, codigolimp)
             productosdelimpieza.append(productolimp)
+        if op == 2:
+            productosforrajeria = input('Ingresar producto: ')
+            marcaforrajeria = input('Ingresa la marca: ')
+            cantidadforrajeria = int(input('¿Cuantos quieres ingresar?: '))
+            preciof = int(input('Precio del producto : $'))
+            codigoforr = input('Codigo de producto: ')
+            productoforr = ProductosDeForrajeria(productosforrajeria, marcaforrajeria, cantidadforrajeria, preciof, codigoforr)
+            productosdeforrajeria.append(productoforr)
     if op == 2:
         print("1. Lista de productos limpieza")
         print("2. Lista de productos de Forrajeria")
@@ -59,6 +75,9 @@ while True:
         if op == 1:
             for i in productosdelimpieza:
                 print("Producto:", i.prod,", Marca: ",i.marca,", Cantidad: ",i.cantidad,", Precio:$",i.precio,", Codigo del producto: ",i.codigo)
+        if op == 2:
+            for j in productosdeforrajeria:
+                print("Producto:", j.prod,", Marca: ",j.marca,", Cantidad: ",j.cantidad,", Precio:$",j.precio,", Codigo del producto: ",j.codigo)
     if op == 3:
         print ("1. Modificar productos de limpieza")
         print ("2. Modificar productos de Forrajeria")
@@ -72,5 +91,15 @@ while True:
                     cantidadlimpieza = int(input('¿Cuantos productos quieres eliminar del stock?: '))
                     cantidad = i.cantidad - cantidadlimpieza
                     i.cantidad = cantidad
+                    if cantidad == 0:
+                        print ("No tienes mas stock de este producto")
+        if op == 2:
+            productosforrajeria = input('Ingresar producto: ')
+            marcaforrajeria = input('Ingresa la marca: ')
+            for j in productosdeforrajeria:
+                if j.prod == productosforrajeria and j.marca == marcaforrajeria:
+                    cantidadforrajeria = int(input('¿Cuantos productos quieres eliminar del stock?: '))
+                    cantidad = j.cantidad - cantidadforrajeria
+                    j.cantidad = cantidad
                     if cantidad == 0:
                         print ("No tienes mas stock de este producto")
