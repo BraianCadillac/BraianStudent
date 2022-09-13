@@ -42,10 +42,12 @@ class ProductosDeUtensiliosD(Productos):
 utensiliosdomesticos = []
 
 while True:
+    from os import system
     print ("1. Ingresar productos al stock")
     print ("2. Lista de productos del stock")
     print ("3. Modificar producto")
     op = int(input('Ingrese numero de opcion: '))
+    system("cls")
     if op == 1:
         print("1. Ingresar productos de limpieza")
         print("2. Ingresar productos de Forrajeria")
@@ -73,26 +75,31 @@ while True:
         print("3. Lista de productos de Utensilios domesticos")
         op = int(input('Ingrese numero de opcion: '))
         if op == 1:
-            for i in productosdelimpieza:
-                print("Producto:", i.prod,", Marca: ",i.marca,", Cantidad: ",i.cantidad,", Precio:$",i.precio,", Codigo del producto: ",i.codigo)
+            if len(productosdelimpieza) == 0:
+                   print ('Aun no tienes stock de productos de limpieza')
+            else:    
+                for i in productosdelimpieza:
+                    print("PRODUCTO:", i.prod,", MARCA: ",i.marca,", CANTIDAD ",i.cantidad,", PRECIO:$",i.precio,", CODIGO DEL PRODUCTO: ",i.codigo)
         if op == 2:
             for j in productosdeforrajeria:
-                print("Producto:", j.prod,", Marca: ",j.marca,", Cantidad: ",j.cantidad,", Precio:$",j.precio,", Codigo del producto: ",j.codigo)
+                print("PRODUCTO:", j.prod,", MARCA: ",j.marca,", CANTIDAD: ",j.cantidad,", PRECIO:$",j.precio,", CODIGO DEL PRODUCTO: ",j.codigo)
     if op == 3:
         print ("1. Modificar productos de limpieza")
         print ("2. Modificar productos de Forrajeria")
         print ("3. Modificar productos de utensilio domesticos")
         op = int(input('Ingrese numero de opcion: '))
         if op == 1:
+            for i in productosdelimpieza:
+                print("Producto:", i.prod,", Marca: ",i.marca,", Cantidad: ",i.cantidad,", Precio:$",i.precio,", Codigo del producto: ",i.codigo)
             productoslimpieza = input('¿Que producto quieres modificar: ')
             marcalimpieza = input('Ingresa la marca del producto a modificar: ')
             for i in productosdelimpieza:
                 if i.prod == productoslimpieza and i.marca == marcalimpieza:
-                    cantidadlimpieza = int(input('¿Cuantos productos quieres eliminar del stock?: '))
-                    cantidad = i.cantidad - cantidadlimpieza
-                    i.cantidad = cantidad
-                    if cantidad == 0:
-                        print ("No tienes mas stock de este producto")
+                    cantidadlimpieza = int(input('¿Cuantos productos quieres eliminar/reponer del stock?: '))
+                    i.cantidad = i.cantidad - cantidadlimpieza
+                    i.cantidad = i.cantidad
+                if i.cantidad == 0:
+                    productosdelimpieza.remove(i)
         if op == 2:
             productosforrajeria = input('Ingresar producto: ')
             marcaforrajeria = input('Ingresa la marca: ')

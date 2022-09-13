@@ -80,15 +80,7 @@ while True:
                 proddelete=input('¿Que producto desea eliminar?: ')
                 marcdelete=input('¿Marca del producto?: ')
                 cantprod=int(input('¿Cuántos productos desea eliminar?: '))
-                for q in productoslimpieza:
-                    if q.prodlimp == proddelete:
-                        delattr (prodelimpieza, 'prodlimp')
-                    if q.marca == marcdelete:
-                        delattr (prodelimpieza, 'marca')
-                    totalcantidad = q.cantidad - cantprod
-                    prodelimpieza = ProductosLimpieza(proddelete, marcdelete, totalcantidad)
-                    productoslimpieza.append(prodelimpieza)
-                    break
+                
             except:
                 print('Haz ingresado una cantidad mayor al stock o un producto erroneo')
         else:
