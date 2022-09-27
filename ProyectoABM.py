@@ -22,212 +22,298 @@ Ante cualquier consulta, quedo a disposición.
 Saludos!'''
 from os import system
 import time
-class Productos():
-    def __init__(self, prod, marca, cantidad, precio, codigo, peso):
-        self.prod = prod
-        self.marca = marca
-        self.cantidad = cantidad
-        self.precio = precio
-        self.codigo = codigo
-        self.peso = peso
-class ProductosDeLimpieza(Productos):
-    def __init__(self, prod, marca, cantidad, precio, codigo, peso):
-        super().__init__(prod, marca, cantidad, precio, codigo, peso)
-productosdelimpieza = []
-class ProductosDeForrajeria(Productos):
-    def __init__(self, prod, marca, cantidad, precio, codigo, peso):
-        super().__init__(prod, marca, cantidad, precio, codigo, peso)
-productosdeforrajeria = []
-class ProductosDeUtensiliosD(Productos):
-    def __init__(self, prod, marca, cantidad, precio, codigo, peso):
-        super().__init__(prod, marca, cantidad, precio, codigo, peso)
-utensiliosdomesticos = []
+from ProductosDeForrajeria import *
+from ProductosDeLimpieza import *
+from ProductosUDomesticos import *
+from Productos import *
+from Cajas import *
 
+def Iniciar(lista):
+    producto1 = ProductosDeLimpieza(1, "Destergente", "Magistral", 15, 900, "asdfasfa", "1lt")
+    producto2 = ProductosDeLimpieza(2, "Destergente", "Cif", 25, 1900, "32f23f32", "2lt")
+    producto3 = ProductosDeLimpieza(3, "Jabon en polvo", "Ala", 9, 1500, "f32f32", "1lt")
+    lista.append(producto1)
+    lista.append(producto2)
+    lista.append(producto3)
+    return lista
+
+def lista(lista):
+    print('------------------------------------------------------------------------------------------------------------------------------')
+    for i in lista:
+        print(i.contador,":  PRODUCTO:", i.prod,", MARCA: ", i.marca, ", PESO:", i.peso,", CANTIDAD: ", i.cantidad,", PRECIO:$",i.precio,", CODIGO DEL PRODUCTO: ", i.codigo)
+    print('------------------------------------------------------------------------------------------------------------------------------')
+
+productosdelimpieza = []
+productosdeforrajeria = []
+utensiliosdomesticos = []
+Cajeros = []
+productosdelimpieza = Iniciar(productosdelimpieza)
 while True:
+        print('------------------------------------------------------------------------------------------------------------------------------')
+        print('\t\t\t\t\t\tLA FAMILIA SOSA')
+        print('------------------------------------------------------------------------------------------------------------------------------')
+        time.sleep(3)
+        system("cls")
+        print('------------------------------------------------------------------------------------------------------------------------------')
         print ("1. Ingresar productos al stock")
         print ("2. Lista de productos del stock")
         print ("3. Modificar producto")
+        print ("4. Cajas")
+        print('------------------------------------------------------------------------------------------------------------------------------')
+        print ("0. Salir")
+        print('\b')
         try:
             op = int(input('Ingrese numero de opcion: '))
             system("cls")
             if op == 1:
-                print("1. Ingresar productos de limpieza")
-                print("2. Ingresar productos de Forrajeria")
-                print("3. Ingresar productos de Utensilios Domesticos")
-                op = int(input('Ingrese numero de opcion: '))
-                system("cls")
-                if op == 1:
-                    productoslimpieza = input('Ingresar producto: ')
-                    marcalimpieza = input('Ingresa la marca: ')
-                    cantidadlimpieza = int(input('¿Cuantos quieres ingresar?: '))
-                    preciol = int(input('Precio del producto unitario: $'))
-                    codigolimp = input('Codigo de producto: ')
-                    pesolimp = input('Ingresar peso del producto de limpieza: ')
-                    productolimp = ProductosDeLimpieza(productoslimpieza, marcalimpieza, cantidadlimpieza, preciol, codigolimp, pesolimp)
-                    productosdelimpieza.append(productolimp)
+                while op != 0:
+                    print('------------------------------------------------------------------------------------------------------------------------------')
+                    print("1. Ingresar productos de limpieza")
+                    print("2. Ingresar productos de Forrajeria")
+                    print("3. Ingresar productos de Utensilios Domesticos")
+                    print('------------------------------------------------------------------------------------------------------------------------------')
+                    print("0. Volver al Menu principal")
+                    print('\b')
+                    op = int(input('Ingrese numero de opcion: '))
                     system("cls")
-                    print('PRODUCTO INGRESADO CON EXITO')
-                    time.sleep(3)
-                    system("cls")
-                elif op == 2:
-                    productosforrajeria = input('Ingresar producto: ')
-                    marcaforrajeria = input('Ingresa la marca: ')
-                    cantidadforrajeria = int(input('¿Cuantos quieres ingresar?: '))
-                    preciof = int(input('Precio del producto unitario: $'))
-                    codigoforr = input('Codigo de producto: ')
-                    pesoforr = input('Ingresar peso del producto de forrajeria: ')
-                    productoforr = ProductosDeForrajeria(productosforrajeria, marcaforrajeria, cantidadforrajeria, preciof, codigoforr, pesoforr)
-                    productosdeforrajeria.append(productoforr)
-                    system("cls")
-                    print('PRODUCTO INGRESADO CON EXITO')
-                    time.sleep(3)
-                    system("cls")
-                elif op == 3:
-                    productosudomesticos = input('Ingresar producto: ')
-                    marcaud = input('Ingresa la marca: ')
-                    cantidadud = int(input('¿Cuantos quieres ingresar?: '))
-                    precioud = int(input('Precio del producto: $'))
-                    codigoud = input('Codigo de producto: ')
-                    productoud = ProductosDeUtensiliosD(productosudomesticos, marcaud, cantidadud, precioud, codigoud, None)
-                    utensiliosdomesticos.append(productoud)
-                    system("cls")
-                    print('PRODUCTO INGRESADO CON EXITO')
-                    time.sleep(3)
-                    system("cls")
-                else:
-                    print('¡HAS INGRESADO UNA OPCION INCORRECTA!')
-                    time.sleep(3)
-                    system("cls")
+                    if op == 1:
+                        while op != 0:
+                            print('------------------------------------------------------------------------------------------------------------------------------\n\t\t\t\t\t\tPRODUCTOS DE LIMPIEZA\n------------------------------------------------------------------------------------------------------------------------------')
+                            time.sleep(2)
+                            system("cls")
+                            print('0. Volver\n------------------------------------------------------------------------------------------------------------------------------')
+                            contadorl = 1
+                            for i in productosdelimpieza:
+                                if contadorl == i.contador:
+                                    contadorl+=1
+                            productoslimpieza = input('Ingresar producto: ')
+                            if productoslimpieza == '0':
+                                system("cls")
+                                print('CARGANDO...')
+                                time.sleep(1)
+                                system("cls")
+                                break
+                            system("cls")
+                            marcalimpieza = input('Ingresa la marca: ')
+                            cantidadlimpieza = int(input('¿Cuantos quieres ingresar?: '))
+                            preciol = int(input('Precio del producto unitario: $'))
+                            codigolimp = input('Codigo de producto: ')
+                            pesolimp = input('Ingresar peso del producto de limpieza: ')
+                            productolimp = ProductosDeLimpieza(contadorl, productoslimpieza, marcalimpieza, cantidadlimpieza, preciol, codigolimp, pesolimp)
+                            productosdelimpieza.append(productolimp)
+                            system("cls")
+                            print('PRODUCTO INGRESADO CON EXITO')
+                            time.sleep(2)
+                            system("cls")
+                    elif op == 2:
+                        productosforrajeria = input('Ingresar producto: ')
+                        marcaforrajeria = input('Ingresa la marca: ')
+                        cantidadforrajeria = int(input('¿Cuantos quieres ingresar?: '))
+                        preciof = int(input('Precio del producto unitario: $'))
+                        codigoforr = input('Codigo de producto: ')
+                        pesoforr = input('Ingresar peso del producto de forrajeria: ')
+                        productoforr = ProductosDeForrajeria(productosforrajeria, marcaforrajeria, cantidadforrajeria, preciof, codigoforr, pesoforr)
+                        productosdeforrajeria.append(productoforr)
+                        system("cls")
+                        print('PRODUCTO INGRESADO CON EXITO')
+                        time.sleep(2)
+                        system("cls")
+                    elif op == 3:
+                        productosudomesticos = input('Ingresar producto: ')
+                        marcaud = input('Ingresa la marca: ')
+                        cantidadud = int(input('¿Cuantos quieres ingresar?: '))
+                        precioud = int(input('Precio del producto: $'))
+                        codigoud = input('Codigo de producto: ')
+                        productoud = ProductosDeUtensiliosD(productosudomesticos, marcaud, cantidadud, precioud, codigoud, None)
+                        utensiliosdomesticos.append(productoud)
+                        system("cls")
+                        print('PRODUCTO INGRESADO CON EXITO')
+                        time.sleep(2)
+                        system("cls")
+                    elif op == 0:
+                        print ("CARGANDO...")
+                        time.sleep(1)
+                        system("cls")
+                        break
+                    else:
+                        print('¡HAS INGRESADO UNA OPCION INCORRECTA!')
+                        time.sleep(2)
+                        system("cls")
             elif op == 2:
-                print("1. Lista de productos limpieza")
-                print("2. Lista de productos de Forrajeria")
-                print("3. Lista de productos de Utensilios domesticos")
-                op = int(input('Ingrese numero de opcion: '))
-                system("cls")
-                if op == 1:
-                    if len(productosdelimpieza) == 0:
-                        print ('AUN NO TIENES PRODUCTOS DE LIMPIEZA EN EL STOCK')
-                        time.sleep(3)
+                while op != 0:
+                    print('------------------------------------------------------------------------------------------------------------------------------')
+                    print("1. Lista de productos Limpieza")
+                    print("2. Lista de productos de Forrajeria")
+                    print("3. Lista de productos de Utensilios domesticos")
+                    print("4. Ordenar lista de productos de limpieza")
+                    print("5. Ordenar lista de productos de Forrajeria")
+                    print("6. Ordenar lista de Utensilios Domesticos")
+                    print('------------------------------------------------------------------------------------------------------------------------------')
+                    print("0. Volver al Menu principal")
+                    print('\b')
+                    op = int(input('Ingrese numero de opcion: '))
+                    system("cls")
+                    if op == 1:
+                        if len(productosdelimpieza) == 0:
+                            print('AUN NO TIENES PRODUCTOS DE LIMPIEZA EN EL STOCK')
+                            time.sleep(2)
+                            system("cls")
+                        else:
+                            lista(productosdelimpieza)
+                            
+                    elif op == 2:
+                        if len(productosdeforrajeria) == 0:
+                            print ('AUN NO TIENES PRODUCTOS DE FORRAJERIA EN EL STOCK')
+                            time.sleep(2)
+                            system("cls")
+                        else:
+                            productoforr.Lista(productosdeforrajeria)
+                    elif op == 3:
+                        if len(utensiliosdomesticos) == 0:
+                            print ('AUN NO TIENES PRODUCTOS DE UTENSILIOS DOMESTICOS')
+                            time.sleep(2)
+                            system("cls")
+                        else:
+                            productoud.Lista(utensiliosdomesticos)
+                    elif op == 0:
+                        print ("CARGANDO...")
+                        time.sleep(1)
                         system("cls")
-                    else:    
-                        for i in productosdelimpieza:
-                            print("PRODUCTO:", i.prod,", MARCA:", i.marca,", PESO:", i.peso,", CANTIDAD: ", i.cantidad,", PRECIO:$",i.precio,", CODIGO DEL PRODUCTO: ", i.codigo)
-                elif op == 2:
-                    if len(productosdeforrajeria) == 0:
-                        print ('AUN NO TIENES PRODUCTOS DE FORRAJERIA EN EL STOCK')
-                        time.sleep(3)
-                        system("cls")
+                        break
                     else:
-                        for j in productosdeforrajeria:
-                            print("PRODUCTO:", j.prod,", MARCA: ", j.marca, ", PESO:", j.peso,", CANTIDAD: ", j.cantidad,", PRECIO:$",j.precio,", CODIGO DEL PRODUCTO: ", j.codigo)
-                elif op == 3:
-                    if len(utensiliosdomesticos) == 0:
-                        print ('AUN NO TIENES PRODUCTOS DE UTENSILIOS DOMESTICOS')
-                        time.sleep(3)
-                        system("cls")
-                    else:
-                        for k in utensiliosdomesticos:
-                            print("PRODUCTO:", k.prod,", MARCA: ", k.marca, ", PESO:", k.peso,", CANTIDAD: ", k.cantidad,", PRECIO:$",k.precio,", CODIGO DEL PRODUCTO: ", k.codigo)
-                else:
-                    print('¡HAS INGRESADO UNA OPCION INCORRECTA!')
+                        print('¡HAS INGRESADO UNA OPCION INCORRECTA!')
             elif op == 3:
-                print ("1. Modificar productos de limpieza")
-                print ("2. Modificar productos de Forrajeria")
-                print ("3. Modificar productos de utensilio domesticos")
-                op = int(input('Ingrese numero de opcion: '))
-                system("cls")
-                if op == 1:
-                    for i in productosdelimpieza:
-                        print("PRODUCTO:", i.prod,", MARCA:", i.marca,", PESO:", i.peso,", CANTIDAD: ", i.cantidad,", PRECIO:$",i.precio,", CODIGO DEL PRODUCTO: ", i.codigo)
-                        productoslimpieza = input('¿Que producto quieres modificar: ')
-                        if productoslimpieza != i.prod:
-                            print('PRODUCTO INGRESADO INEXISTENTE EN EL STOCK')
-                            time.sleep(3)
+                while op != 0:
+                    print('------------------------------------------------------------------------------------------------------------------------------')
+                    print ("1. Modificar productos de limpieza")
+                    print ("2. Modificar productos de Forrajeria")
+                    print ("3. Modificar productos de utensilio domesticos")
+                    print('------------------------------------------------------------------------------------------------------------------------------')
+                    print ("0. Volver al Menu principal")
+                    print('\b')
+                    op = int(input('Ingrese numero de opcion: '))
+                    system("cls")
+                    if op == 1:
+                        if len(productosdelimpieza) == 0:
                             system("cls")
-                        elif productoslimpieza == i.prod:
-                            marcalimpieza = input('Ingresa la marca del producto a modificar: ')
-                            if marcalimpieza != i.marca:
-                                print('LA MARCA DEL PRODUCTO INGRESADO ES INEXISTENTE EN EL STOCK')
-                                time.sleep(4)
+                            print ('AUN NO TIENES PRODUCTOS DE LIMPIEZA EN EL STOCK')
+                            time.sleep(2)
+                            system("cls") 
+                        elif len(productosdelimpieza) > 0:
+                            lista(productosdelimpieza)
+                            print('\b')
+                            opcion = int(input("Ingrese numero de producto para modificar: "))
+                            if opcion <= 0:
+                                system("cls")
+                                print('¡HAS INGRESADO UN NUMERO DE PRODUCTO QUE NO EXISTE!')
+                                time.sleep(2)
+                                system("cls")
+                            elif opcion > len(productosdelimpieza):
+                                system("cls")
+                                print('¡HAS INGRESADO UN NUMERO DE PRODUCTO QUE NO EXISTE!')
+                                time.sleep(2)
                                 system("cls")
                             else:
-                                cantidadlimpieza = int(input('¿Cuantos productos quieres eliminar/reponer del stock?: '))
-                                if cantidadlimpieza > i.cantidad:
-                                    print ('¡HAS INGRESADO UN NUMERO MAYOR DEL STOCK QUE TIENES!')
-                                    time.sleep(4)
-                                    system("cls")
-                                elif cantidadlimpieza < i.cantidad:
-                                    i.cantidad = i.cantidad - cantidadlimpieza
-                                    i.cantidad = i.cantidad
-                                else:
-                                    productosdelimpieza.remove(i)
-                                    print ('¡YA NO TIENES MAS STOCK DE ESTE PRODUCTO!')
-                                    time.sleep(3)
-                                    system("cls")
-                elif op == 2:
-                    for j in productosdeforrajeria:
-                        print("PRODUCTO:", j.prod,", MARCA: ", j.marca, ", PESO:", j.peso,", CANTIDAD: ", j.cantidad,", PRECIO:$",j.precio,", CODIGO DEL PRODUCTO: ", j.codigo)
-                        productosforrajeria = input('¿Que producto quieres modificar: ')
-                        if productosforrajeria != j.prod:
-                            print('PRODUCTO INGRESADO INEXISTENTE EN EL STOCK')
-                            time.sleep(3)
+                                Productos(3, "Jabon en polvo", "Ala", 25, 1500, "f32f32", "1lt").ModificacionDeProducto(productosdelimpieza, opcion)
+                        else:
+                            pass
+                    elif op == 2:
+                        if len(productosdeforrajeria) == 0:
                             system("cls")
-                        elif productosforrajeria == j.prod:
-                            marcaforrajeria = input('Ingresa la marca del producto a modificar: ')
-                            if marcaforrajeria != j.marca:
-                                print('LA MARCA DEL PRODUCTO INGRESADO ES INEXISTENTE EN EL STOCK')
-                                time.sleep(4)
-                                system("cls")
-                            else:
-                                cantidadforrajeria = int(input('¿Cuantos productos quieres eliminar/reponer del stock?: '))
-                                if cantidadforrajeria > j.cantidad:
-                                    print ('¡HAS INGRESADO UN NUMERO MAYOR DEL STOCK QUE TIENES!')
-                                    time.sleep(4)
-                                    system("cls")
-                                elif cantidadforrajeria < j.cantidad:
-                                    j.cantidad = j.cantidad - cantidadforrajeria
-                                    j.cantidad = j.cantidad
-                                else:
-                                    productosdeforrajeria.remove(j)
-                                    print ('¡YA NO TIENES MAS STOCK DE ESTE PRODUCTO!')
-                                    time.sleep(3)
-                                    system("cls")
-                elif op == 3:
-                    for k in utensiliosdomesticos:
-                        print("PRODUCTO:", k.prod,", MARCA: ", k.marca, ", PESO:", k.peso,", CANTIDAD: ", k.cantidad,", PRECIO:$",k.precio,", CODIGO DEL PRODUCTO: ", k.codigo)
-                        productosudomesticos = input('¿Que producto quieres modificar: ')
-                        if productosudomesticos != k.prod:
-                            print('PRODUCTO INGRESADO INEXISTENTE EN EL STOCK')
-                            time.sleep(3)
+                            print ('AUN NO TIENES PRODUCTOS DE FORRAJERIA EN EL STOCK')
+                            time.sleep(2)
                             system("cls")
-                        elif productosudomesticos == k.prod:
-                            marcaud = input('Ingresa la marca del producto a modificar: ')
-                            if marcaud != k.marca:
-                                print('LA MARCA DEL PRODUCTO INGRESADO ES INEXISTENTE EN EL STOCK')
-                                time.sleep(4)
+                        else:
+                            productoforr.Lista(productosdeforrajeria)
+                            productosforrajeria = input('¿Que producto quieres modificar: ')
+                            productoforr.ModificacionDeProductoLyF(productosdeforrajeria, productosforrajeria)
+                    elif op == 3:
+                        if len(utensiliosdomesticos) == 0:
+                            system("cls")
+                            print ('AUN NO TIENES PRODUCTOS DE UTENSILIOS DOMESTICOS')
+                            time.sleep(2)
+                            system("cls")
+                        else:
+                            productoud.Lista(utensiliosdomesticos)
+                            udomesticos = input('¿Que producto quieres modificar: ')
+                            productoud.ModificacionDeProducto(utensiliosdomesticos, udomesticos)
+                    elif op == 0:
+                        print ("CARGANDO...")
+                        time.sleep(2)
+                        system("cls")
+                        break
+                    else:
+                        print('HAS INGRESADO UNA OPCION INCORRECTA')
+                        time.sleep(2)
+                        system("cls")
+            elif op == 4:
+                while op != 0:
+                    print('------------------------------------------------------------------------------------------------------------------------------')
+                    print ("1. Ingresar datos del personal de Caja")
+                    print ("2. Lista de Cajeros")
+                    print('------------------------------------------------------------------------------------------------------------------------------')
+                    print("0. Volver")
+                    print ("\b")
+                    op = int(input('Ingrese numero de opcion: '))
+                    system("cls")
+                    if op == 1: 
+                        while op != 0:
+                            print('0. Volver')
+                            print('------------------------------------------------------------------------------------------------------------------------------')
+                            print('\b')
+                            time.sleep(1)
+                            contadorcaj = 1
+                            for c in Cajeros:
+                                if contadorcaj == c.caja:
+                                    contadorcaj+=1
+                            nom = input('Ingresar nombre: ')
+                            if nom == '0':
                                 system("cls")
-                            else:
-                                cantidadud = int(input('¿Cuantos productos quieres eliminar/reponer del stock?: '))
-                                if cantidadud > k.cantidad:
-                                    print ('¡HAS INGRESADO UN NUMERO MAYOR DEL STOCK QUE TIENES!')
-                                    time.sleep(4)
-                                    system("cls")
-                                elif cantidadud < k.cantidad:
-                                    k.cantidad = k.cantidad - cantidadud
-                                    k.cantidad = k.cantidad
-                                else:
-                                    utensiliosdomesticos.remove(k)
-                                    print ('¡YA NO TIENES MAS STOCK DE ESTE PRODUCTO!')
-                                    time.sleep(3)
-                                    system("cls")
-                else:
-                    print('HAS INGRESADO UNA OPCION INCORRECTA')
-            else:
-                print('HAS INGRESADO UNA OPCION INCORRECTA')
+                                print('CARGANDO...')
+                                time.sleep(1)
+                                system("cls")
+                                break
+                            system("cls")
+                            ape = input('Apellido: ')
+                            nac = input('Fecha de nacimiento: ')
+                            dni = input('N° de DNI: ')
+                            cajero = Caja(contadorcaj, nom, ape, nac, dni)
+                            Cajeros.append(cajero)
+                            system("cls")
+                            print ('¡DATOS INGRESADOS CON EXITO!')
+                            time.sleep(2)
+                            system("cls")
+                    elif op == 2:
+                        if len(Cajeros) == 0:
+                            system("cls")
+                            print('¡AUN NO SE ENCUENTRAN DATOS DE LOS CAJEROS!')
+                            time.sleep(2)
+                            system("cls")
+                        else:
+                            cajero.MostrarLista(Cajeros)
+                            time.sleep(1)
+                    elif op == 0:
+                        print ("CARGANDO...")
+                        time.sleep(2)
+                        system("cls")
+                        break
+                    else:
+                        print('HAS INGRESADO UNA OPCION INCORRECTA')
+                        time.sleep(2)
+                        system("cls")
+                
+            elif op == 0:
+                print ("¡HASTA PRONTO!")
                 time.sleep(3)
                 system("cls")
-        except:
+                break
+                
+            else:
+                print('HAS INGRESADO UNA OPCION INCORRECTA')
+                time.sleep(2)
+                system("cls")
+        except Exception as e:
             system("cls")
-            print('HAS INGRESADO UNA OPCION INCORRECTA')
-            time.sleep(3)
+            print(e)
+            time.sleep(15)
             system("cls")
